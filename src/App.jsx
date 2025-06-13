@@ -16,10 +16,28 @@ import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header/Headers';
 //Footer
 import Footer from "./components/Footer/Footers";
+import ChatbotComponent from './components/Chatbot/ChatbotComponents';
+import {useState}from 'react';
+import DeveloperInfoPopup from './components/DeveloperInfo/DeveloperInfoPopup';
 
 
 function App() {
+  const [showPopup, setShowPopup] = useState(true);
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   return (
+    <>
+      <div>
+        {/* Your main application content */}
+        <DeveloperInfoPopup
+          show={showPopup}
+          onClose={handleClosePopup}
+          studentName="Dhanashri Lavhate"
+          studentPhotoUrl="\Images\Dhanu2.jpeg" // Path to their photo
+          uniqueMessage="Learned so much during this OJT! This app showcases my independent coding and deployment skills"
+        />
+      </div>
     <Router>
       <Header />
       
@@ -33,8 +51,10 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <ChatbotComponent/>
       <Footer/>
     </Router>
+    </>
   );
 }
 
